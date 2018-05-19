@@ -30,7 +30,6 @@ public class Create {
         columnDataTypeList = new ArrayList<>();
         columnConstraintList = new ArrayList<>();
         message = "Table creation successful";
-        // StringBuffer columnsString = new StringBuffer();
         String subQuery = "";
         ArrayList<String> commandTokens = new ArrayList<String>(Arrays.asList(createQuery.trim().split(" ")));
         // Remove elements from the LinkedList till the retrieval of the regex element
@@ -38,9 +37,6 @@ public class Create {
             String token = validCreateQueryTokens.poll();
             if(!token.equalsIgnoreCase(commandTokens.get(index))) {
                 if(token.equals("\\(([\\w\\s,]+)\\)")) {
-                    /*for(int i = index; i < commandTokens.size(); i++) {
-                        columnsString.append(commandTokens.get(i));
-                    }*/
                     subQuery = createQuery.substring(createQuery.trim().indexOf("("));
                     if(!Pattern.compile(token).matcher(subQuery).matches()) {
                         message = "Invalid Create query. Please try again...";
